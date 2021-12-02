@@ -6,7 +6,7 @@
         private $connection;
 
         public function __construct(){   
-            include_once("DataBaseConnection.php");
+            include_once("../database/DataBaseConnection.php");
 
             $this->connection = $conn;
         }
