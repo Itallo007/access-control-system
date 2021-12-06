@@ -1,6 +1,9 @@
 <?php         
     include_once("Usuario.php");
     include_once("UsuarioAcessoModulo.php");
+    include_once("Permissao.php");
+    include_once("Modulo.php");
+
     class DataAccessObject{
 
         private $connection;
@@ -197,6 +200,174 @@
             return $usuarios;
         }
         //Fim da parte do Usuário
+
+        //Parte da permissao
+        public function createPermissao($permissao){
+            if($permissao) {
+                $sql = "INSERT INTO permissao (inserir, atualizar, selecionar, deletar) 
+                        VALUES ('$permissao->inserir', '$permissao->atualizar', 
+                                '$permissao->selecionar', '$permissao->deletar')";
+
+                return $this->connection->query($sql) === TRUE;
+
+                //$connection->close();
+            }
+        }
+
+        public function updatePermissao($permissao){
+
+            if($permissao->id !== null) {
+                $sql = "UPDATE permissao 
+                        SET inserir = '$permissao->inserir', 
+                            atualizar = '$permissao->atualizar', 
+                            deletar = '$permissao->deletar'
+                        WHERE id = {$permissao->id}";
+
+                return $this->connection->query($sql) === TRUE;
+
+                //$connection->close();
+            }
+        }
+
+        public function deletePermissao($permissao){
+
+            if($permissao->id) {
+                $sql = "DELETE FROM permissao
+                WHERE id = $permissao->id";
+
+                return $this->connection->query($sql) === TRUE;
+            }
+        }
+
+        public function getPermissao($id){
+
+            $permissao = new Permissao();
+
+            if($id){
+                $sql = "SELECT * FROM permissao WHERE id = $id";
+                    $result = $this->connection->query($sql);
+
+                if($result->num_rows > 0) {
+                    while($row = $result->fetch_assoc()) {
+                        $permissao->id = $row['id'];
+                        $permissao->inserir = $row['inserir'];
+                        $permissao->atualizar = $row['atualizar'];
+                        $permissao->selecionar = $row['selecionar'];
+                        $permissao->deletar = $row['deletar'];
+
+                        return $permissao;                       
+                    }
+                } 
+            }
+
+        }
+
+        public function getListPermissoes(){
+            $permissoes = array();
+
+            $sql = "SELECT * FROM permissao";
+                $result = $this->connection->query($sql);
+
+            if($result->num_rows > 0) {
+                while($row = $result->fetch_assoc()) {
+                    $permissao = new Permissao();
+
+                    $permissao->id = $row['id'];
+                    $permissao->inserir = $row['inserir'];
+                    $permissao->atualizar = $row['atualizar'];
+                    $permissao->selecionar = $row['selecionar'];
+                    $permissao->deletar = $row['deletar'];
+
+                    array_push($permissoes, $permissao);                       
+                }
+            } 
+
+            return $permissoes;
+        }
+        //Fim da parte da permmissao
+
+        //Parte da Modulo
+        public function createModulo($modulo){
+            if($modulo) {
+                $sql = "INSERT INTO modulo (titulo, descricao, data_criacao) 
+                        VALUES ('$modulo->titulo', '$modulo->descricao', 
+                                '$modulo->data_criacao')";
+
+                return $this->connection->query($sql) === TRUE;
+
+                //$connection->close();
+            }
+        }
+        
+        public function updateModulo($modulo){
+
+            if($modulo->id !== null) {
+                $sql = "UPDATE modulo 
+                        SET titulo = '$modulo->titulo', 
+                            descricao = '$modulo->descricao', 
+                            data_cricao = '$modulo->data_criacao'
+                        WHERE id = {$modulo->id}";
+
+                return $this->connection->query($sql) === TRUE;
+
+                //$connection->close();
+            }
+        }
+        
+        public function deleteModulo($modulo){
+
+            if($modulo->id) {
+                $sql = "DELETE FROM modulo
+                        WHERE id = $modulo->id";
+
+                return $this->connection->query($sql) === TRUE;
+            }
+        }
+        
+        public function getModulo($id){
+
+            $modulo = new Modulo();
+
+            if($id){
+                $sql = "SELECT * FROM modulo WHERE id = $id";
+                    $result = $this->connection->query($sql);
+
+                if($result->num_rows > 0) {
+                    while($row = $result->fetch_assoc()) {
+                        $modulo->id = $row['id'];
+                        $modulo->titulo = $row['titulo'];
+                        $modulo->descricao = $row['descricao'];
+                        $modulo->data_criacao = $row['data_criacao'];
+
+                        return $modulo;                       
+                    }
+                } 
+            }
+        }
+        
+        public function getListModulos(){
+            $modulos = array();
+
+            $sql = "SELECT * FROM modulo";
+                $result = $this->connection->query($sql);
+
+            if($result->num_rows > 0) {
+                while($row = $result->fetch_assoc()) {
+                    $modulo = new Modulo();
+
+                    $modulo->id = $row['id'];
+                    $modulo->titulo = $row['titulo'];
+                    $modulo->descricao = $row['descricao'];
+                    $modulo->data_criacao = $row['data_criacao'];
+
+                    array_push($modulos, $modulo);                       
+                }
+            } 
+
+            return $modulos;
+        }
+        //Fim da parte da permmissao
+        
 
     }
 
