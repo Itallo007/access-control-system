@@ -291,9 +291,14 @@
             if($modulo) {
                 $sql = "INSERT INTO modulo (titulo, descricao, data_criacao) 
                         VALUES ('$modulo->titulo', '$modulo->descricao', 
-                                '$modulo->data_criacao')";
+                                now())";
 
-                return $this->connection->query($sql) === TRUE;
+                // return $this->connection->query($sql) === TRUE;
+                if($this->connection->query($sql)) {
+                    return true;
+                }else {
+                    echo $this->connection->error;
+                }
 
                 //$connection->close();
             }
@@ -304,11 +309,16 @@
             if($modulo->id !== null) {
                 $sql = "UPDATE modulo 
                         SET titulo = '$modulo->titulo', 
-                            descricao = '$modulo->descricao', 
-                            data_cricao = '$modulo->data_criacao'
+                            descricao = '$modulo->descricao'
                         WHERE id = {$modulo->id}";
 
-                return $this->connection->query($sql) === TRUE;
+                // return $this->connection->query($sql) === TRUE;
+                if($this->connection->query($sql)) {
+                    return true;
+                } else {
+                    echo($sql . "<br>" . $this->connection->error);
+                    return false;
+                }
 
                 //$connection->close();
             }

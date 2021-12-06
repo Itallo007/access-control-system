@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -19,7 +22,6 @@
     include('../dataManager/Usuario.php');
     include('../dataManager/DataAccessObject.php');
 
-    session_start();
     if(isset($_SESSION)){
         $dao = new DataAccessObject();
         $usuario = new Usuario();
