@@ -38,8 +38,8 @@
           <td>". $m->titulo ."</td>
           <td>". $m->descricao ."</td>
           <td>". $m->data_criacao ."</td>
-          <td><a href='../validations/editar_modulo.php?id='". $m->id .">Editar</a></td>
-          <td><a href='../validations/deletar_modulo.php?id='". $m->id .">Deletar</a></td>
+          <td><a href='../pages/editar_modulo.php?id=". $m->id ."'>Editar</a></td>
+          <td><a href='../validations/deletar_modulo.php?id=". $m->id ."' >Deletar</a></td>
           </tr>
         ");
       }
