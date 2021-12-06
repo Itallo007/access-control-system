@@ -18,15 +18,6 @@
     }
 
     if($usuario !== null){
-        echo("<br>Logged in");
-        echo("<br> Id: " . $usuario->id);
-        echo("<br> Login: " . $usuario->login);
-        echo("<br> Senha: " . $usuario->senha);
-        echo("<br> Último Acesso: " . $usuario->ultimo_acesso);
-        echo("<br> Criação: " . $usuario->criacao);
-        echo("<br> E-Mail: " . $usuario->email);
-        echo("<br> Status: " . $usuario->status);
-        echo("<br> Senha Assinatura: " .$usuario->senha_assinatura);
        
         //Usuario logado
 

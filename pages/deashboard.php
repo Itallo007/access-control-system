@@ -67,7 +67,6 @@
             ?>
             </ul>
             <?php
-            echo('Usuário pode selecionar');
 
             if($permissao->inserir){?>
                 <h1>
