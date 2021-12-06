@@ -18,11 +18,10 @@
     }
 
     if($usuario !== null){
-       
         //Usuario logado
 
         session_start();
-        $_SESSION['user'] = $usuario;
+        $_SESSION['user'] = serialize($usuario);
 
         date_default_timezone_set('America/Sao_Paulo');
         $usuario->ultimo_acesso = date('Y/m/d H:i:s');

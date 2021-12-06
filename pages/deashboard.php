@@ -20,16 +20,19 @@
 <body class="hold-transition login-page">
 <?php
     include('../dataManager/Usuario.php');
+    include('../dataManager/Permissao.php');
+    include('../dataManager/Modulo.php');
+    include('../dataManager/UsuarioAcessoModulo.php');
     include('../dataManager/DataAccessObject.php');
 
     if(isset($_SESSION)){
         $dao = new DataAccessObject();
-        $usuario = new Usuario();
-
-        $usuario = $_SESSION['user'];
+        $usuario = unserialize($_SESSION['user']);
 
         $usuario_acesso_modulo = $dao->getUsuarioAcessoModulo($usuario->id);
+
         $permissao = $dao->getPermissao($usuario_acesso_modulo->permissao_id);
+
         $modulo = $dao->getModulo($usuario_acesso_modulo->modulo_id);
        
     
