@@ -291,9 +291,14 @@
             if($modulo) {
                 $sql = "INSERT INTO modulo (titulo, descricao, data_criacao) 
                         VALUES ('$modulo->titulo', '$modulo->descricao', 
-                                '$modulo->data_criacao')";
+                                now())";
 
-                return $this->connection->query($sql) === TRUE;
+                // return $this->connection->query($sql) === TRUE;
+                if($this->connection->query($sql)) {
+                    return true;
+                }else {
+                    echo $this->connection->error;
+                }
 
                 //$connection->close();
             }
