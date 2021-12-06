@@ -4,12 +4,12 @@
 
     $dao = new DataAccessObject();
 
-    $usuarios = $dao->getUsuario(1);
+    $usuarios = $dao->getListUsuarios();
 
     $usuario = null;
     //Fazendo a verificacao do login
     foreach($usuarios as $u){
-        if($u->email === $login || $u->login === $login){
+        if($u->email === $login || $u->login === $login && $u->status){
             if($u->senha === $pass){
                 $usuario = $u;
                 break;
@@ -27,19 +27,28 @@
         echo("<br> E-Mail: " . $usuario->email);
         echo("<br> Status: " . $usuario->status);
         echo("<br> Senha Assinatura: " .$usuario->senha_assinatura);
+       
+        //Usuario logado
+
+        session_start();
+        $_SESSION['user'] = $usuario;
 
         date_default_timezone_set('America/Sao_Paulo');
         $usuario->ultimo_acesso = date('Y/m/d H:i:s');
 
         if($dao->updateUsuario($usuario)){
-            echo("<script>alert('usuario atualuzado')</script>");
+            echo("<script>console.log('usuario atualuzado')</script>");
         }else{
-            echo("<script>alert('usuario nao atualuzado')</script>");
+            echo("<script>console.log('usuario nao atualuzado')</script>");
         }
+
+        echo('usuario logado com sucesso!');
+        header('Location:../pages/deashboard.php');
 
     }else{
         echo("<br>Not logged in");
+        header('location:../index.html');
     }
     
-    echo("<br><a href='../login.html'>Voltar</a>");
+    echo("<br><a href='../index.html'>Voltar</a>");
 ?>
