@@ -15,7 +15,7 @@
   $modulo->criacao = date('Y/m/d H:i:s');
 
   if($dao->createModulo($modulo)){
-      header('Location:../pages/deashboard.php');
+      header('Location:../pages/listar_modulos.php');
       exit;
   }else{
       echo('<script>alert("Módulo nao inserido");</script>');

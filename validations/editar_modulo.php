@@ -12,7 +12,7 @@
   $modulo->descricao = $descricao;
 
   if($dao->updateModulo($modulo)) {
-    header("Location: http://localhost/access-control-system/pages/editar_modulo.php?message=Atualizado+Com+Sucesso");
+    header("Location: http://localhost/access-control-system/pages/listar_modulos.php?message=Atualizado+Com+Sucesso");
   }else {
     echo("Deu ruim");
   }

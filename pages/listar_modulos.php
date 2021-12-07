@@ -21,31 +21,34 @@
   <link rel="stylesheet" href="../controller/dist/css/adminlte.min.css">
 </head>
 <body class="hold-transition login-page">
-<table class="table table-bordered">
-  <thead style="font-weight: bold;">
-    <td>Id</td>
-    <td>Título</td>
-    <td>Descrição</td>
-    <td>Criado em</td>
-    <td colspan="2" style="text-align: center;" >Opções</td>
-  </thead>
-  <tbody>
-    <?php
-      foreach($modulos as $m) {
-        echo("
-          <tr>
-          <td>". $m->id ."</td>
-          <td>". $m->titulo ."</td>
-          <td>". $m->descricao ."</td>
-          <td>". $m->data_criacao ."</td>
-          <td><a href='../validations/editar_modulo.php?id='". $m->id .">Editar</a></td>
-          <td><a href='../validations/deletar_modulo.php?id='". $m->id .">Deletar</a></td>
-          </tr>
-        ");
-      }
-    ?>
-  </tbody>
-</table>
+
+  <a href="./cadastrar_modulo.html"><button class="btn btn-primary">Cadastrar Módulo</button></a>
+
+  <table class="table table-bordered">
+    <thead style="font-weight: bold;">
+      <td>Id</td>
+      <td>Título</td>
+      <td>Descrição</td>
+      <td>Criado em</td>
+      <td colspan="2" style="text-align: center;" >Opções</td>
+    </thead>
+    <tbody>
+      <?php
+        foreach($modulos as $m) {
+          echo("
+            <tr>
+            <td>". $m->id ."</td>
+            <td>". $m->titulo ."</td>
+            <td>". $m->descricao ."</td>
+            <td>". $m->data_criacao ."</td>
+            <td><a href='../pages/editar_modulo.php?id=". $m->id ."'>Editar</a></td>
+            <td><a href='../validations/deletar_modulo.php?id=". $m->id ."' >Deletar</a></td>
+            </tr>
+          ");
+        }
+      ?>
+    </tbody>
+  </table>
 
 <!-- jQuery -->
 <script src="../../plugins/jquery/jquery.min.js"></script>
