@@ -23,7 +23,7 @@
     include('../dataManager/Permissao.php');
     include('../dataManager/Modulo.php');
     include('../dataManager/UsuarioAcessoModulo.php');
-    include('../dataManager/DataAccessObject.php');
+    include_once('../dataManager/DataAccessObject.php');
 
     if(isset($_SESSION)){
         $dao = new DataAccessObject();
@@ -77,7 +77,14 @@
                 </h1>
             <?php
 
-                include('components/usuario_cadastro.html');
+                include('components/usuario_cadastro.php');
+
+                ?>
+                <h1>
+                    Cadastrar Modulo
+                </h1>
+            <?php
+                include('components/cadastrar_modulo.html');
             }
             
         }
